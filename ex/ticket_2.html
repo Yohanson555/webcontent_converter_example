@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RECEIPT</title>
+</head>
+
+<style>
+    body {
+       width: 360px;
+    }
+
+    #ticket img {
+      filter: grayscale(100%);
+      display: block;
+      width: 100%;
+      height: 0px;
+      padding-top: 25%;
+
+      background: url(../images/logo_1.png) center center no-repeat;
+      background-size: cover;
+    }
+
+    #ticket u {
+      min-width: 100%;
+      display: inline-block;
+      border-bottom: 1px solid #cdcdcd;
+      text-decoration: none;
+    }
+
+    #ticket i {
+      font-style: italic;
+    }
+
+    #ticket b {
+      font-weight: bold;
+    }
+
+    #ticket t {
+      display: inline-block;
+      width: 30px;
+    }
+
+    #ticket line {
+      width: 100%;
+
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: clip;
+      line-height: 1;
+      height: 10px;
+    }
+
+    #ticket line:after {
+      font-size: 14;
+      content: attr(symbol) attr(symbol) attr(symbol) attr(symbol) attr(symbol) attr(symbol) attr(symbol) attr(symbol)
+        attr(symbol) attr(symbol) attr(symbol) attr(symbol) attr(symbol) attr(symbol) attr(symbol) attr(symbol)
+        attr(symbol) attr(symbol) attr(symbol) attr(symbol) attr(symbol) attr(symbol) attr(symbol) attr(symbol)
+        attr(symbol) attr(symbol) attr(symbol) attr(symbol) attr(symbol) attr(symbol) attr(symbol) attr(symbol)
+        attr(symbol) attr(symbol) attr(symbol) attr(symbol) attr(symbol) attr(symbol) attr(symbol) attr(symbol)
+        attr(symbol) attr(symbol) attr(symbol) attr(symbol) attr(symbol) attr(symbol) attr(symbol) attr(symbol)
+        attr(symbol) attr(symbol);
+    }
+
+    #ticket line[type="single"]:after {
+      font-size: 14;
+      content: "────────────────────────────────────────────────────────────────────────";
+    }
+
+    #ticket line[type="double"]:after {
+      font-size: 14;
+      content: "════════════════════════════════════════════════════════════════════════";
+    }
+
+    #ticket label {
+      display: block;
+      text-align: left;
+    }
+
+    #ticket label[align="left"] {
+      text-align: left;
+    }
+
+    #ticket label[align="center"] {
+      text-align: center;
+    }
+
+    #ticket label[align="right"] {
+      text-align: right;
+    }
+
+    #ticket inv {
+      display: contents;
+    }
+
+    #ticket inv * {
+      background-color: #000;
+      color: #fff;
+    }
+
+    #ticket cell {
+      flex: 1;
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    #ticket row {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+    }
+
+    #ticket center {
+      text-align: center;
+    }
+
+    #ticket left {
+      text-align: left;
+    }
+
+    #ticket right {
+      text-align: right;
+    }
+
+    #ticket inv center {
+      display: block;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    #ticket inv left {
+      display: block;
+      width: fit-content;
+    }
+
+    #ticket inv right {
+      display: block;
+      width: fit-content;
+      margin: 0 0 0 auto;
+    }
+
+    #ticket cell[width] {
+      flex: none;
+      width: calc(8px * var(--x));
+    }
+
+    #ticket cell[align="right"] {
+      text-align: right;
+    }
+
+    #ticket cell[align="left"] {
+      text-align: left;
+    }
+
+    #ticket cell[align="center"] {
+      text-align: center;
+    }
+
+    #ticket s {
+      display: contents;
+      font-size: 100%;
+    }
+
+    #ticket sh {
+      display: inline-block;
+      font-size: 200%;
+      transform: scale(0.5, 1);
+      line-height: 1;
+    }
+
+    #ticket w {
+      display: inline-block;
+      font-size: 200%;
+      transform: scale(1, 0.5);
+      line-height: 1;
+    }
+
+    #ticket wh {
+      display: contents;
+      font-size: 200%;
+    }
+
+    #ticket fs[size="1"] {
+      font-size: 100%;
+    }
+
+    #ticket fs[size="2"] {
+      font-size: 24px;
+    }
+
+    #ticket fs[size="3"] {
+      font-size: 34px;
+    }
+
+    #ticket fs[size="4"] {
+      font-size: 44px;
+    }
+
+    #ticket fs[size="5"] {
+      font-size: 54px;
+    }
+
+    #ticket fs[size="6"] {
+      font-size: 64px;
+    }
+
+    #ticket fs[size="7"] {
+      font-size: 74px;
+    }
+
+    #ticket fs[size="8"] {
+      font-size: 84px;
+    }
+
+    #ticket fs[size="9"] {
+      font-size: 94px;
+    }
+
+    #ticket qr {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+
+      background: url(../images/qr_code.jpg) center center no-repeat;
+      background-size: 100% 100%;
+    }
+
+    #ticket qr[size="1"] {
+      width: 30px;
+      height: 30px;
+    }
+
+    #ticket qr[size="2"] {
+      width: 40px;
+      height: 40px;
+    }
+
+    #ticket qr[size="3"] {
+      width: 50px;
+      height: 50px;
+    }
+
+    #ticket qr[size="4"] {
+      width: 60px;
+      height: 60px;
+    }
+
+    #ticket qr[size="5"] {
+      width: 70px;
+      height: 70px;
+    }
+
+    #ticket qr[size="6"] {
+      width: 80px;
+      height: 80px;
+    }
+
+    #ticket qr[size="7"] {
+      width: 90px;
+      height: 90px;
+    }
+
+    #ticket qr[size="8"] {
+      width: 100px;
+      height: 100px;
+    }
+
+    #ticket bar {
+      display: inline-block;
+      background: #fff url(../images/bar_ean_13.jpg) center center no-repeat;
+      background-size: 100% 100%;
+    }
+
+    #ticket bar[width="2"] {
+      width: 40%;
+    }
+
+    #ticket bar[width="3"] {
+      width: 60%;
+    }
+
+    #ticket bar[width="4"] {
+      width: 80%;
+    }
+
+    #ticket bar[width="5"] {
+      width: 90%;
+    }
+
+    #ticket bar[width="6"] {
+      width: 100%;
+    }
+
+    #ticket bar[height] {
+      flex: none;
+      height: calc(0.6px * var(--h));
+    }
+
+    #ticket bar[type="1"] {
+      background-image: url(../images/bar_upc_a.jpg);
+    }
+
+    #ticket bar[type="2"] {
+      background-image: url(../images/bar_upc_e.jpg);
+    }
+
+    #ticket bar[type="3"] {
+      background-image: url(../images/bar_ean_13.jpg);
+    }
+
+    #ticket bar[type="4"] {
+      background-image: url(../images/bar_ean_8.jpg);
+    }
+
+    #ticket bar[type="5"] {
+      background-image: url(../images/bar_code_39.jpg);
+    }
+
+    #ticket bar[type="6"] {
+      background-image: url(../images/bar_itf.jpg);
+    }
+
+    #ticket bar[type="7"] {
+      background-image: url(../images/bar_nw7.jpg);
+    }
+
+    #ticket bar[type="8"] {
+      background-image: url(../images/bar_code_93.jpg);
+    }
+
+    #ticket bar[type="9"] {
+      background-image: url(../images/bar_code_128.jpg);
+    }
+
+    #ticket euro:after {
+      content: "€";
+      display: inline;
+    }
+
+    /* ------- padding left -------- */
+    cell[pleft="1"] {
+      padding-left: calc(8px * 1);
+    }
+
+    cell[pleft="2"] {
+      padding-left: calc(8px * 2);
+    }
+
+    cell[pleft="3"] {
+      padding-left: calc(8px * 3);
+    }
+
+    cell[pleft="4"] {
+      padding-left: calc(8px * 4);
+    }
+
+    cell[pleft="5"] {
+      padding-left: calc(8px * 5);
+    }
+
+    cell[pleft="6"] {
+      padding-left: calc(8px * 6);
+    }
+
+    cell[pleft="7"] {
+      padding-left: calc(8px * 7);
+    }
+
+    cell[pleft="8"] {
+      padding-left: calc(8px * 8);
+    }
+
+    cell[pleft="9"] {
+      padding-left: calc(8px * 9);
+    }
+
+    cell[pleft="10"] {
+      padding-left: calc(8px * 10);
+    }
+
+    /* ------- padding right -------- */
+
+    cell[pright="1"] {
+      padding-right: 8px;
+    }
+
+    cell[pright="2"] {
+      padding-right: 16px;
+    }
+
+    cell[pright="3"] {
+      padding-right: 24px;
+    }
+
+    cell[pright="4"] {
+      padding-right: 32px;
+    }
+
+    cell[pright="5"] {
+      padding-right: 40px;
+    }
+
+    cell[pright="6"] {
+      padding-right: 48px;
+    }
+
+    cell[pright="7"] {
+      padding-right: 56px;
+    }
+
+    cell[pright="8"] {
+      padding-right: 64px;
+    }
+
+    cell[pright="9"] {
+      padding-right: 72px;
+    }
+
+    cell[pright="10"] {
+      padding-right: 80px;
+    }
+
+    [width='1'] {
+        --x: 1;
+    }
+
+    [width='2'] {
+        --x: 2;
+    }
+
+    [width='3'] {
+        --x: 3;
+    }
+
+    [width='4'] {
+        --x: 4;
+    }
+
+    [width='5'] {
+        --x: 5;
+    }
+
+    [width='6'] {
+        --x: 6;
+    }
+
+    [width='7'] {
+        --x: 7;
+    }
+
+    [width='8'] {
+        --x: 8;
+    }
+
+    [width='9'] {
+        --x: 9;
+    }
+
+    [width='10'] {
+        --x: 10;
+    }
+
+    [width='11'] {
+        --x: 11;
+    }
+
+    [width='12'] {
+        --x: 12;
+    }
+
+    [width='13'] {
+        --x: 13;
+    }
+
+    [width='14'] {
+        --x: 14;
+    }
+
+    [width='15'] {
+        --x: 15;
+    }
+
+    [width='16'] {
+        --x: 16;
+    }
+
+    [width='17'] {
+        --x: 17;
+    }
+
+    [width='18'] {
+        --x: 18;
+    }
+
+    [width='19'] {
+        --x: 19;
+    }
+
+    [width='20'] {
+        --x: 20;
+    }
+
+    [width='21'] {
+        --x: 21;
+    }
+
+    [width='22'] {
+        --x: 22;
+    }
+
+    [width='23'] {
+        --x: 23;
+    }
+
+    [width='24'] {
+        --x: 24;
+    }
+
+    [width='25'] {
+        --x: 25;
+    }
+  </style>
+
+<body>
+<div id="ticket">
+    <center><sh>TOA TOA Bar Geladaria</sh></center>
+    <center><b>OLIMPIO NUNES CONSTANTINO</b></center>
+    <center>RUA FERNANDO QUARESMA LOJA 1B</center>
+    <center>FOZ DO ARELHO</center>
+    <center>2500-486 FOZ DO ARELHO</center>
+    <center>NIF: PT 204005051</center>
+    <line type="single"></line>
+    <row>
+        <cell><b>FACTURA SIMPLIFICADA</b></cell>
+        <cell align="right">Original</cell>
+    </row>
+    <row>
+        <cell><b>FS 0101B.FS/86198</b></cell>
+        <cell align="right">Fatura liquidada</cell>
+    </row>
+    <row>
+        <cell width="17">Data:2023-02-02</cell>
+        <cell width="11">Hora:13:49</cell>
+        <cell align="right">Op:Vendedor 1</cell>
+    </row>
+    <line type="single"></line>
+    <row>
+        <cell width="12">Cliente:</cell>
+        <cell>Consumidor final</cell>
+    </row>
+    <row>
+        <cell width="12">Contrib.:</cell>
+        <cell>PT   Consumidor Final</cell>
+    </row>
+    <line type="single"></line>
+    <row>
+        <cell width="4"><b>Qt</b></cell>
+        <cell><b>Descriacao</b></cell>
+        <cell width="5"><b>Prc</b></cell>
+        <cell width="5"><b>Dsc</b></cell>
+        <cell width="4"><b>IVA</b></cell>
+        <cell width="6"><b>Total</b></cell>
+    </row>
+    <line type="single"></line>
+    <row>
+        <cell width="4">1</cell>
+        <cell>CERVEJA MEDIA</cell>
+        <cell width="5">1.20</cell>
+        <cell width="6">0.00%</cell>
+        <cell width="4">23%</cell>
+        <cell width="6" align="right">1.20</cell>
+    </row>
+    <row>
+        <cell width="4">1</cell>
+        <cell>AGUA 0.50L</cell>
+        <cell width="5">1.00</cell>
+        <cell width="6">0.00%</cell>
+        <cell width="4">13%</cell>
+        <cell width="6" align="right">1.00</cell>
+    </row>
+
+    <line type="single" pleft="18"></line>
+
+    <row>
+        <cell width="18">Pagamento em:</cell>
+        <cell>Total Iva.inc</cell>
+        <cell align="right" width="8">2.20</cell>
+    </row>
+
+    <row>
+        <cell width="10">Dinheiro:</cell>
+        <cell width="8" align="right" pright="1">2,20</cell>
+        <cell>Dsc.Global</cell>
+        <cell width="6">0.00%</cell>
+        <cell align="right" width="6">2.20</cell>
+    </row>
+    <row>
+        <cell width="10">Troco:</cell>
+        <cell width="8" align="right" pright="1">2,20</cell>
+        <cell><b>Total Doc.</b></cell>
+        <cell align="right"><b>2.20</b></cell>
+    </row>
+    <line type="single"></line>
+
+    <row>
+        <cell width="8" align="right"><b>Taxa</b></cell>
+        <cell width="16" align="right"><b>Incidencia</b></cell>
+        <cell pright="1" align="right"><b>Valor IVA</b></cell>
+    </row>
+
+    <row>
+        <cell width="8" align="right">13%</cell>
+        <cell width="16" align="right">0,88</cell>
+        <cell pright="1" align="right">0,12</cell>
+    </row>
+    <row>
+        <cell width="8" align="right">23%</cell>
+        <cell width="16" align="right">0,98</cell>
+        <cell pright="1" align="right">0,22</cell>
+    </row>
+
+    <row>
+        <cell width="8" align="right"><b>Totais</b></cell>
+        <cell width="16" align="right"><b>1,86</b></cell>
+        <cell pright="1" align="right"><b>0,34</b></cell>
+    </row>
+
+    <br>
+
+    <center>Os artigos facturados/sevicos prestados foram colocados a disposicao do adquirente na data 02-02-2023 (№ 5, Alinea f) do artigo 36 do CIVA)</center>
+    <br>
+    <br>
+    <center><b>IUD: FS 0101B.FC /86198</b></center>
+    <center><b>ATCUD: JF5MB9DK - 86198</b></center>
+
+    <br>
+    <br>
+    <br>
+</div>
+</body>
+</html>
